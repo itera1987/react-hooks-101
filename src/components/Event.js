@@ -1,11 +1,13 @@
 import React from "react"
 
+import { actions } from "../actions";
 
 const Event = ({ dispatch, event }) => {
     const id = event.id
     const handleClickDeleteButton = () => {
         const result = window.confirm(`id=${id}を消すか？`)
-        if (result) dispatch({ type: "DELETE_EVENT", id: id })
+        
+        if (result) dispatch({ type: actions.DELETE_EVENT, id: id })
     }
 
     return (

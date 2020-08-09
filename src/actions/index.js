@@ -1,0 +1,5 @@
+export const actions = {
+    CREATE_EVENT: "CREATE_EVENT",
+    DELETE_EVENT: "DELETE_EVENT",
+    DELETE_ALL_EVENT: "DELETE_ALL_EVENT"
+}
