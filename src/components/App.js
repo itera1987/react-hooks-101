@@ -23,7 +23,13 @@ const App = () => {
     setBody("")
   }
 
-  console.log(state)
+  const deleteAllEvents = e => {
+    e.preventDefault()
+    const result = window.confirm("すべて滅ぼしてもよいか？")
+    if (result) dispatch({ type: "DELETE_ALL_EVENT" })
+  }
+
+  const unCreatable = title === "" || body === ""
 
   return (
     <div className="container-fluid">
@@ -39,8 +45,8 @@ const App = () => {
           <textarea className="form-control" id="formEventBody" value={body} onChange={e => setBody(e.target.value)} />
         </div>
 
-        <button className="btn btn-primary" onClick={addEvent} >イベントを作成する</button>
-        <button className="btn btn-danger" >すべてのインドを削除する</button>
+        <button className="btn btn-primary" onClick={addEvent} disabled={unCreatable}>イベントを作成する</button>
+        <button className="btn btn-danger" onClick={deleteAllEvents} disabled={state.length === 0}>すべてのインドを削除する</button>
         <button className="btn btn-primary">すべての操作ログを削除する</button>
 
         <h4>イベント一覧</h4>
@@ -55,7 +61,6 @@ const App = () => {
           </thead>
           <tbody>
             { state.map((event, index) => (<Event key={index} event={event} dispatch={dispatch} />)) }
-
           </tbody>
         </table>
       </form>
