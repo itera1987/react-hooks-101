@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const App = () => {
   const initialState = {
     events: [],
+    operationLogs: [],
   }
   
   const [state, dispatch] = useReducer(reducer, initialState)
