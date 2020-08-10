@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react"
 
 import AppContext from "../contexts/AppContext";
+import { timeCurrentIso8601 } from "../utils";
 
 import { actions } from "../actions";
 
@@ -18,6 +19,12 @@ const EventForm = () => {
         body,
     })
 
+    dispatch({
+        type: actions.ADD_OPERATION_LOG,
+        description: "made event",
+        operatedAt: timeCurrentIso8601(),
+    })
+
         setTitle("")
         setBody("")
     }
@@ -25,7 +32,14 @@ const EventForm = () => {
     const deleteAllEvents = e => {
         e.preventDefault()
         const result = window.confirm("すべて滅ぼしてもよいか？")
-        if (result) dispatch({ type: actions.DELETE_ALL_EVENT })
+        if (result) {
+            dispatch({ type: actions.DELETE_ALL_EVENT })
+            dispatch({
+                type: actions.DELETE_ALL_OPERATION_LOGS,
+                description: "destroy all humans",
+                operatedAt: timeCurrentIso8601(),
+            })
+        } 
     }
 
     const unCreatable = title === "" || body === ""

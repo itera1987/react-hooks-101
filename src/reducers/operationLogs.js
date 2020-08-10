@@ -8,7 +8,7 @@ const operationLogs = (state = [], action) => {
       operatedAt: action.operatedAt,
     }  
     return [operationLog, ...state]
-    case actions.DELETE_ALL_OPERATION_LOG:
+    case actions.DELETE_ALL_OPERATION_LOGS:
       return []
     default:
       return state
